@@ -1,6 +1,7 @@
 package com.github.attacktive.msaproduct.product.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.github.attacktive.msaproduct.product.api.request.AddProductRequest;
 import com.github.attacktive.msaproduct.product.api.request.UpdateProductRequest;
@@ -10,7 +11,7 @@ import org.springframework.lang.Nullable;
 public interface ProductUseCase {
 	Product getProduct(long id);
 
-	List<Product> getProductsByPagination(@Nullable Integer page, @Nullable Integer size);
+	List<Product> getProductsByPagination(@Nullable Integer page, @Nullable Integer size, @Nullable Set<Long> productIds);
 
 	Product addProduct(AddProductRequest addProductRequest);
 

@@ -1,6 +1,7 @@
 package com.github.attacktive.msaproduct.product.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.github.attacktive.msaproduct.product.api.exception.NoSuchProductException;
 import com.github.attacktive.msaproduct.product.api.request.AddProductRequest;
@@ -25,8 +26,8 @@ public class ProductService implements ProductUseCase {
 	}
 
 	@Override
-	public List<Product> getProductsByPagination(@Nullable Integer page, @Nullable Integer size) {
-		return productRepository.findAll(page, size);
+	public List<Product> getProductsByPagination(@Nullable Integer page, @Nullable Integer size, Set<Long> productIds) {
+		return productRepository.findAll(page, size, productIds);
 	}
 
 	@Override

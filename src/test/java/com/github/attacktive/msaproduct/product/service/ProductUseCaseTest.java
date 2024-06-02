@@ -1,5 +1,7 @@
 package com.github.attacktive.msaproduct.product.service;
 
+import java.util.Set;
+
 import com.github.attacktive.msaproduct.MsaProductApplication;
 import com.github.attacktive.msaproduct.product.api.request.AddProductRequest;
 import com.github.attacktive.msaproduct.product.api.request.UpdateProductRequest;
@@ -59,13 +61,13 @@ class ProductUseCaseTest {
 	}
 
 	@Test
-	@DisplayName("getProductsByPagination: with great size")
+	@DisplayName("getProductsByPagination: with great page size")
 	void testGetProductsByPaginationWithGreatSize() {
 		productUseCase.addProduct(new AddProductRequest("p1", null, 1L));
 		productUseCase.addProduct(new AddProductRequest("p2", null, 2L));
 		productUseCase.addProduct(new AddProductRequest("p3", null, 3L));
 
-		var products = productUseCase.getProductsByPagination(1, 10);
+		var products = productUseCase.getProductsByPagination(1, 10, null);
 		Assertions.assertEquals(3, products.size());
 	}
 
@@ -76,7 +78,7 @@ class ProductUseCaseTest {
 		productUseCase.addProduct(new AddProductRequest("p2", null, 2L));
 		productUseCase.addProduct(new AddProductRequest("p3", null, 3L));
 
-		var products = productUseCase.getProductsByPagination(1, 2);
+		var products = productUseCase.getProductsByPagination(1, 2, null);
 		Assertions.assertEquals(2, products.size());
 	}
 
@@ -87,8 +89,19 @@ class ProductUseCaseTest {
 		productUseCase.addProduct(new AddProductRequest("p2", null, 2L));
 		productUseCase.addProduct(new AddProductRequest("p3", null, 3L));
 
-		var products = productUseCase.getProductsByPagination(2, 2);
+		var products = productUseCase.getProductsByPagination(2, 2, null);
 		Assertions.assertEquals(1, products.size());
+	}
+
+	@Test
+	@DisplayName("getProductsByPagination: by Product IDs")
+	void testGetProductsByPaginationByProductIds() {
+		productUseCase.addProduct(new AddProductRequest("p1", null, 1L));
+		var secondProduct = productUseCase.addProduct(new AddProductRequest("p2", null, 2L));
+
+		var products = productUseCase.getProductsByPagination(1, 5150, Set.of(secondProduct.id()));
+		Assertions.assertEquals(1, products.size());
+		Assertions.assertEquals(secondProduct, products.get(0));
 	}
 
 	@Test
@@ -116,7 +129,7 @@ class ProductUseCaseTest {
 		var added = productUseCase.addProduct(addProductRequest);
 		productUseCase.deleteProduct(added.id());
 
-		var products = productUseCase.getProductsByPagination(1, 10);
+		var products = productUseCase.getProductsByPagination(1, 10, null);
 		Assertions.assertEquals(0, products.size());
 	}
 }
