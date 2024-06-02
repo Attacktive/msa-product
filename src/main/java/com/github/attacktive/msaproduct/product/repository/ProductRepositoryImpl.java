@@ -57,6 +57,7 @@ public class ProductRepositoryImpl implements ProductRepository {
 	}
 
 	@Override
+	@Transactional
 	public void deleteById(long id) {
 		productJpaRepository.deleteById(id);
 	}
