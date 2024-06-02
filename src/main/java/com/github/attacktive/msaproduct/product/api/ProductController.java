@@ -35,7 +35,7 @@ public class ProductController {
 	}
 
 	@GetMapping
-	public ResponseEntity<List<Product>> getProductsByPagination(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size, @RequestParam(required = false) Set<Long> productIds) {
+	public ResponseEntity<List<Product>> getProductsByPagination(@RequestParam(required = false) Integer page, @RequestParam(required = false) Integer size, @RequestParam(required = false, name = "product-id") Set<Long> productIds) {
 		ResponseEntity<List<Product>> responseEntity;
 		var products = productUseCase.getProductsByPagination(page, size, productIds);
 		if (products.isEmpty()) {
