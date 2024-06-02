@@ -1,0 +1,53 @@
+package com.github.attacktive.msaproduct.product.service;
+
+import java.util.List;
+
+import com.github.attacktive.msaproduct.product.api.exception.NoSuchProductException;
+import com.github.attacktive.msaproduct.product.api.request.AddProductRequest;
+import com.github.attacktive.msaproduct.product.api.request.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.domain.Product;
+import com.github.attacktive.msaproduct.product.repository.ProductRepository;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.lang.Nullable;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class ProductService implements ProductUseCase {
+	private final ProductRepository productRepository;
+
+	@Override
+	public Product getProduct(long id) {
+		return productRepository.findById(id)
+			.orElseThrow(() -> new NoSuchProductException(id));
+	}
+
+	@Override
+	public List<Product> getProductsByPagination(@Nullable Integer page, @Nullable Integer size) {
+		return productRepository.findAll(page, size);
+	}
+
+	@Override
+	public Product addProduct(AddProductRequest addProductRequest) {
+		return productRepository.save(addProductRequest);
+	}
+
+	@Override
+	public Product updateProduct(long id, UpdateProductRequest updateProductRequest) {
+		var productId = productRepository.findById(id)
+			.map(Product::id)
+			.orElseThrow(() -> new NoSuchProductException(id));
+
+		return productRepository.save(updateProductRequest.withId(productId));
+	}
+
+	@Override
+	public void deleteProduct(long id) {
+		productRepository.findById(id)
+			.orElseThrow(() -> new NoSuchProductException(id));
+
+		productRepository.deleteById(id);
+	}
+}
