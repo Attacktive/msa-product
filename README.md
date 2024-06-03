@@ -1,5 +1,7 @@
 # msa-product
 
+[![CodeFactor](https://www.codefactor.io/repository/github/attacktive/msa-product/badge)](https://www.codefactor.io/repository/github/attacktive/msa-product)
+
 It's a minimal example of a [microservice](https://en.wikipedia.org/wiki/Microservices) which manipulates the 'Products'.
 
 Another microservice about 'Orders' can be found [here](https://github.com/Attacktive/msa-order).
