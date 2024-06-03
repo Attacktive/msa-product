@@ -5,6 +5,7 @@ It's a minimal example of a [microservice](https://en.wikipedia.org/wiki/Microse
 Another microservice about 'Orders' can be found [here](https://github.com/Attacktive/msa-order).
 
 ### What It Does
+
 - gets a product by the ID
 - gets a list of products with pagination
 - adds a product
@@ -12,4 +13,5 @@ Another microservice about 'Orders' can be found [here](https://github.com/Attac
 - deletes a product
 
 ### Food for Thoughts
+
 - updating and/or deleting a product that is already within an order might need... something.
