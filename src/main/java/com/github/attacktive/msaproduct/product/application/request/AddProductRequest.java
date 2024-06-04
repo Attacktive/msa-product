@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.api.request;
+package com.github.attacktive.msaproduct.product.application.request;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
