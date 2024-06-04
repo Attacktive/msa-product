@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.port.outbound.persristence;
+package com.github.attacktive.msaproduct.product.adapter.outbound.persristence;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

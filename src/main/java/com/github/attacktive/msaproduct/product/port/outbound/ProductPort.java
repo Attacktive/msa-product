@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.adapter.outbound;
+package com.github.attacktive.msaproduct.product.port.outbound;
 
 import java.util.List;
 import java.util.Optional;
@@ -8,7 +8,7 @@ import com.github.attacktive.msaproduct.product.application.request.ProductReque
 import com.github.attacktive.msaproduct.product.domain.Product;
 import org.springframework.lang.Nullable;
 
-public interface ProductRepository {
+public interface ProductPort {
 	Optional<Product> findById(long id);
 
 	List<Product> findAll(@Nullable Integer page, @Nullable Integer size, @Nullable Set<Long> productIds);

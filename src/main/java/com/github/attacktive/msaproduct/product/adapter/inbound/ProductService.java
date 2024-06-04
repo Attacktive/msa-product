@@ -3,7 +3,7 @@ package com.github.attacktive.msaproduct.product.adapter.inbound;
 import java.util.List;
 import java.util.Set;
 
-import com.github.attacktive.msaproduct.product.adapter.outbound.ProductRepository;
+ import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
 import com.github.attacktive.msaproduct.product.application.exception.NoSuchProductException;
 import com.github.attacktive.msaproduct.product.application.request.AddProductRequest;
 import com.github.attacktive.msaproduct.product.application.request.UpdateProductRequest;
@@ -18,38 +18,38 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductService implements ProductUseCase {
-	private final ProductRepository productRepository;
+	private final ProductPort productPort;
 
 	@Override
 	public Product getProduct(long id) {
-		return productRepository.findById(id)
+		return productPort.findById(id)
 			.orElseThrow(() -> new NoSuchProductException(id));
 	}
 
 	@Override
 	public List<Product> getProductsByPagination(@Nullable Integer page, @Nullable Integer size, Set<Long> productIds) {
-		return productRepository.findAll(page, size, productIds);
+		return productPort.findAll(page, size, productIds);
 	}
 
 	@Override
 	public Product addProduct(AddProductRequest addProductRequest) {
-		return productRepository.save(addProductRequest);
+		return productPort.save(addProductRequest);
 	}
 
 	@Override
 	public Product updateProduct(long id, UpdateProductRequest updateProductRequest) {
-		var productId = productRepository.findById(id)
+		var productId = productPort.findById(id)
 			.map(Product::id)
 			.orElseThrow(() -> new NoSuchProductException(id));
 
-		return productRepository.save(updateProductRequest.withId(productId));
+		return productPort.save(updateProductRequest.withId(productId));
 	}
 
 	@Override
 	public void deleteProduct(long id) {
-		productRepository.findById(id)
+		productPort.findById(id)
 			.orElseThrow(() -> new NoSuchProductException(id));
 
-		productRepository.deleteById(id);
+		productPort.deleteById(id);
 	}
 }
