@@ -6,7 +6,7 @@ import com.github.attacktive.msaproduct.MsaProductApplication;
 import com.github.attacktive.msaproduct.product.application.request.AddProductRequest;
 import com.github.attacktive.msaproduct.product.application.request.UpdateProductRequest;
 import com.github.attacktive.msaproduct.product.port.inbound.ProductUseCase;
-import com.github.attacktive.msaproduct.product.port.outbound.persristence.ProductJpaRepository;
+import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -23,11 +23,11 @@ class ProductUseCaseTest {
 	private ProductUseCase productUseCase;
 
 	@Autowired
-	private ProductJpaRepository productJpaRepository;
+	private ProductRepository productRepository;
 
 	@BeforeEach
 	void truncateTable() {
-		productJpaRepository.deleteAll();
+		productRepository.deleteAll();
 	}
 
 	@Test
@@ -111,7 +111,7 @@ class ProductUseCaseTest {
 		var addProductRequest = new AddProductRequest("product-name", "product-description", 100L);
 		var added = productUseCase.addProduct(addProductRequest);
 
-		var productCount = productJpaRepository.count();
+		var productCount = productRepository.count();
 		var newName = "new-product-name";
 		var newPrice = 200L;
 		var updateProductRequest = new UpdateProductRequest(added.id(), newName, null, newPrice);
@@ -120,7 +120,7 @@ class ProductUseCaseTest {
 		Assertions.assertEquals(newName, updated.name());
 		Assertions.assertNull(updated.description());
 		Assertions.assertEquals(newPrice, updated.price());
-		Assertions.assertEquals(productCount, productJpaRepository.count());
+		Assertions.assertEquals(productCount, productRepository.count());
 	}
 
 	@Test

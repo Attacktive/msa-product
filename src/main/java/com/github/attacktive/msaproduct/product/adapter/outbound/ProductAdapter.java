@@ -1,14 +1,14 @@
-package com.github.attacktive.msaproduct.product.port.outbound;
+package com.github.attacktive.msaproduct.product.adapter.outbound;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import com.github.attacktive.msaproduct.product.adapter.outbound.ProductRepository;
 import com.github.attacktive.msaproduct.product.application.request.ProductRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
-import com.github.attacktive.msaproduct.product.port.outbound.persristence.ProductEntity;
-import com.github.attacktive.msaproduct.product.port.outbound.persristence.ProductJpaRepository;
+import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductEntity;
+import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductRepository;
+import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,16 +18,16 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
-public class ProductRepositoryImpl implements ProductRepository {
+public class ProductAdapter implements ProductPort {
 	private static final int DEFAULT_PAGE = 1;
 	private static final int DEFAULT_PAGE_SIZE = 20;
 
-	private final ProductJpaRepository productJpaRepository;
+	private final ProductRepository productRepository;
 
 	@Override
 	@Transactional(readOnly = true)
 	public Optional<Product> findById(long id) {
-		return productJpaRepository.findById(id)
+		return productRepository.findById(id)
 			.map(ProductEntity::toProduct);
 	}
 
@@ -41,9 +41,9 @@ public class ProductRepositoryImpl implements ProductRepository {
 
 		Page<ProductEntity> pageOfProducts;
 		if (productIds == null || productIds.isEmpty()) {
-			pageOfProducts = productJpaRepository.findAll(pageRequest);
+			pageOfProducts = productRepository.findAll(pageRequest);
 		} else {
-			pageOfProducts = productJpaRepository.findAllByIdIn(productIds, pageRequest);
+			pageOfProducts = productRepository.findAllByIdIn(productIds, pageRequest);
 		}
 
 		return pageOfProducts.map(ProductEntity::toProduct)
@@ -53,13 +53,13 @@ public class ProductRepositoryImpl implements ProductRepository {
 	@Override
 	@Transactional
 	public Product save(ProductRequest productRequest) {
-		return productJpaRepository.save(new ProductEntity(productRequest))
+		return productRepository.save(new ProductEntity(productRequest))
 			.toProduct();
 	}
 
 	@Override
 	@Transactional
 	public void deleteById(long id) {
-		productJpaRepository.deleteById(id);
+		productRepository.deleteById(id);
 	}
 }
