@@ -1,13 +1,14 @@
-package com.github.attacktive.msaproduct.product.repository;
+package com.github.attacktive.msaproduct.product.port.outbound;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import com.github.attacktive.msaproduct.product.api.request.ProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.outbound.ProductRepository;
+import com.github.attacktive.msaproduct.product.application.request.ProductRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
-import com.github.attacktive.msaproduct.product.repository.persistence.ProductEntity;
-import com.github.attacktive.msaproduct.product.repository.persistence.ProductJpaRepository;
+import com.github.attacktive.msaproduct.product.port.outbound.persristence.ProductEntity;
+import com.github.attacktive.msaproduct.product.port.outbound.persristence.ProductJpaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

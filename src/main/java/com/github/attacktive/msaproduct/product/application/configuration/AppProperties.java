@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.api.configuration;
+package com.github.attacktive.msaproduct.product.application.configuration;
 
 import lombok.Getter;
 import lombok.Setter;

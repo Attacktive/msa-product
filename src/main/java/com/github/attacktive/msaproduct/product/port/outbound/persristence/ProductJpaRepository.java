@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.repository.persistence;
+package com.github.attacktive.msaproduct.product.port.outbound.persristence;
 
 import java.util.Set;
 

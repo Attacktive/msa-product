@@ -3,9 +3,10 @@ package com.github.attacktive.msaproduct.product.service;
 import java.util.Set;
 
 import com.github.attacktive.msaproduct.MsaProductApplication;
-import com.github.attacktive.msaproduct.product.api.request.AddProductRequest;
-import com.github.attacktive.msaproduct.product.api.request.UpdateProductRequest;
-import com.github.attacktive.msaproduct.product.repository.persistence.ProductJpaRepository;
+import com.github.attacktive.msaproduct.product.application.request.AddProductRequest;
+import com.github.attacktive.msaproduct.product.application.request.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.port.inbound.ProductUseCase;
+import com.github.attacktive.msaproduct.product.port.outbound.persristence.ProductJpaRepository;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

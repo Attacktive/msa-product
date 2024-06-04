@@ -1,10 +1,10 @@
-package com.github.attacktive.msaproduct.product.repository;
+package com.github.attacktive.msaproduct.product.adapter.outbound;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import com.github.attacktive.msaproduct.product.api.request.ProductRequest;
+import com.github.attacktive.msaproduct.product.application.request.ProductRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import org.springframework.lang.Nullable;
 

@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.api.exception;
+package com.github.attacktive.msaproduct.product.application.exception;
 
 public class NoSuchProductException extends RuntimeException {
 	public NoSuchProductException(long id) {
