@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.application.response;
+package com.github.attacktive.msaproduct.product.adapter.outbound;
 
 import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonIgnore;

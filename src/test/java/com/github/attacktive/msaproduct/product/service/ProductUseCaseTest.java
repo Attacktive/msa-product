@@ -3,8 +3,8 @@ package com.github.attacktive.msaproduct.product.service;
 import java.util.Set;
 
 import com.github.attacktive.msaproduct.MsaProductApplication;
-import com.github.attacktive.msaproduct.product.application.request.AddProductRequest;
-import com.github.attacktive.msaproduct.product.application.request.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.AddProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.UpdateProductRequest;
 import com.github.attacktive.msaproduct.product.port.inbound.ProductUseCase;
 import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductRepository;
 import org.junit.jupiter.api.Assertions;

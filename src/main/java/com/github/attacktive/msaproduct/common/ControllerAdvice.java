@@ -2,8 +2,8 @@ package com.github.attacktive.msaproduct.common;
 
 import javax.xml.bind.ValidationException;
 
-import com.github.attacktive.msaproduct.product.application.exception.NoSuchProductException;
-import com.github.attacktive.msaproduct.product.application.response.ErrorResponse;
+import com.github.attacktive.msaproduct.product.adapter.NoSuchProductException;
+import com.github.attacktive.msaproduct.product.adapter.outbound.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageConversionException;

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import com.github.attacktive.msaproduct.product.application.request.ProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.ProductRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductEntity;
 import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductRepository;

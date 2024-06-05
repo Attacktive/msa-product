@@ -3,8 +3,8 @@ package com.github.attacktive.msaproduct.product.port.inbound;
 import java.util.List;
 import java.util.Set;
 
-import com.github.attacktive.msaproduct.product.application.request.AddProductRequest;
-import com.github.attacktive.msaproduct.product.application.request.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.AddProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.UpdateProductRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import org.springframework.lang.Nullable;
 
