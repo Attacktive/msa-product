@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.application;
+package com.github.attacktive.msaproduct.common;
 
 import javax.xml.bind.ValidationException;
 
