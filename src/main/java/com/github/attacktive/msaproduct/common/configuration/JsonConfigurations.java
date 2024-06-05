@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.application.configuration;
+package com.github.attacktive.msaproduct.common.configuration;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
