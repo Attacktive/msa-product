@@ -24,11 +24,14 @@ public class ProductEntity {
 
 	private long price;
 
+	private long stock;
+
 	public ProductEntity(ProductRequest productRequest) {
 		id = productRequest.id();
 		name = productRequest.name();
 		description = productRequest.description();
 		price = productRequest.price();
+		stock = productRequest.stock();
 	}
 
 	public Product toProduct() {
@@ -37,6 +40,7 @@ public class ProductEntity {
 			.name(name)
 			.description(description)
 			.price(price)
+			.stock(stock)
 			.build();
 	}
 }

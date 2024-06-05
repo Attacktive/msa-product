@@ -11,4 +11,6 @@ public interface ProductRequest {
 	String description();
 
 	Long price();
+
+	Long stock();
 }
