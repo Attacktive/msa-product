@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.application.request;
+package com.github.attacktive.msaproduct.product.adapter.inbound;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -6,9 +6,7 @@ import javax.validation.constraints.Positive;
 
 import org.springframework.lang.Nullable;
 
-public record UpdateProductRequest(
-	Long id,
-
+public record AddProductRequest(
 	@NotBlank
 	String name,
 
@@ -19,7 +17,8 @@ public record UpdateProductRequest(
 	@Positive
 	Long price
 ) implements ProductRequest {
-	public UpdateProductRequest withId(Long id) {
-		return new UpdateProductRequest(id, name, description, price);
+	@Override
+	public Long id() {
+		return null;
 	}
 }

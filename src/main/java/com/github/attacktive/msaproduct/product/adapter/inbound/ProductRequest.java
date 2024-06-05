@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.application.request;
+package com.github.attacktive.msaproduct.product.adapter.inbound;
 
 import org.springframework.lang.Nullable;
 

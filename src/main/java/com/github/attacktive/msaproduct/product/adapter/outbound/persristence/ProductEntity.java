@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.github.attacktive.msaproduct.product.application.request.ProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.ProductRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import lombok.NoArgsConstructor;
 

@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Set;
 
  import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
-import com.github.attacktive.msaproduct.product.application.exception.NoSuchProductException;
-import com.github.attacktive.msaproduct.product.application.request.AddProductRequest;
-import com.github.attacktive.msaproduct.product.application.request.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.NoSuchProductException;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import com.github.attacktive.msaproduct.product.port.inbound.ProductUseCase;
 import lombok.RequiredArgsConstructor;
