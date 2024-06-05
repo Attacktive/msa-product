@@ -14,8 +14,3 @@ Another microservice about 'Orders' can be found [here](https://github.com/Attac
 - adds a product
 - updates a product
 - deletes a product
-
-## Food for Thoughts
-
-- The domain layer has a single record without a method. Am I on the right track?
-- Updating and/or deleting a product that is already within an order might need... something.
