@@ -3,10 +3,10 @@ package com.github.attacktive.msaproduct.product.adapter.inbound;
 import java.util.List;
 import java.util.Set;
 
- import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
 import com.github.attacktive.msaproduct.product.adapter.NoSuchProductException;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import com.github.attacktive.msaproduct.product.port.inbound.ProductUseCase;
+import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.lang.Nullable;

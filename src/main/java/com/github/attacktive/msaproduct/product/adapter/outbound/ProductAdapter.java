@@ -5,9 +5,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import com.github.attacktive.msaproduct.product.adapter.inbound.ProductRequest;
-import com.github.attacktive.msaproduct.product.domain.Product;
 import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductEntity;
 import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductRepository;
+import com.github.attacktive.msaproduct.product.domain.Product;
 import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
