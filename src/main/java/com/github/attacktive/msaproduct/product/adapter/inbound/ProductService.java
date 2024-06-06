@@ -44,6 +44,16 @@ public class ProductService implements ProductUseCase {
 	}
 
 	@Override
+	public Product updateProductStock(UpdateProductStockRequest updateProductStockRequest) {
+		var updateProductRequest = productPort.findById(updateProductStockRequest.id())
+			.map(found -> found.withStockChange(updateProductStockRequest.stockChange()))
+			.map(UpdateProductRequest::new)
+			.orElseThrow(() -> new NoSuchProductException(updateProductStockRequest.id()));
+
+		return productPort.save(updateProductRequest);
+	}
+
+	@Override
 	public void deleteProduct(long id) {
 		productPort.findById(id)
 			.orElseThrow(() -> new NoSuchProductException(id));

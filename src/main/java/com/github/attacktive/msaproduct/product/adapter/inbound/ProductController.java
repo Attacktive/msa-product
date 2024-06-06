@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -57,6 +58,13 @@ public class ProductController {
 	// fixme: the @Valid annotation is not working
 	public Product updateProduct(@PathVariable long id, @RequestBody @Valid UpdateProductRequest updateProductRequest) {
 		return productUseCase.updateProduct(id, updateProductRequest);
+	}
+
+	@PatchMapping("{id}")
+	@ResponseStatus(HttpStatus.OK)
+	// fixme: the @Valid annotation is not working
+	public Product updateProductStock(@PathVariable long id, @RequestBody @Valid UpdateProductStockRequest updateProductStockRequest) {
+		return productUseCase.updateProductStock(updateProductStockRequest);
 	}
 
 	@DeleteMapping("{id}")

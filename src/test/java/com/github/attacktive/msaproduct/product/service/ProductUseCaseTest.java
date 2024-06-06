@@ -5,6 +5,8 @@ import java.util.Set;
 import com.github.attacktive.msaproduct.MsaProductApplication;
 import com.github.attacktive.msaproduct.product.adapter.inbound.AddProductRequest;
 import com.github.attacktive.msaproduct.product.adapter.inbound.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.UpdateProductStockRequest;
+import com.github.attacktive.msaproduct.product.domain.InsufficientStockException;
 import com.github.attacktive.msaproduct.product.port.inbound.ProductUseCase;
 import com.github.attacktive.msaproduct.product.adapter.outbound.persristence.ProductRepository;
 import org.junit.jupiter.api.Assertions;
@@ -127,6 +129,28 @@ class ProductUseCaseTest {
 		Assertions.assertEquals(newPrice, updated.price());
 		Assertions.assertEquals(newStock, updated.stock());
 		Assertions.assertEquals(productCount, productRepository.count());
+	}
+
+	@Test
+	@DisplayName("updateProductStockSucceeding")
+	void testUpdateProductStockSucceeding() {
+		var addProductRequest = new AddProductRequest("product-name", "product-description", 100L, 10L);
+		var added = productUseCase.addProduct(addProductRequest);
+
+		var updateProductStockRequest = new UpdateProductStockRequest(added.id(), -9L);
+		var updated = productUseCase.updateProductStock(updateProductStockRequest);
+
+		Assertions.assertEquals(1, updated.stock());
+	}
+
+	@Test
+	@DisplayName("updateProductStockFailing")
+	void testUpdateProductStockFailing() {
+		var addProductRequest = new AddProductRequest("product-name", "product-description", 100L, 10L);
+		var added = productUseCase.addProduct(addProductRequest);
+
+		var updateProductStockRequest = new UpdateProductStockRequest(added.id(), -11L);
+		Assertions.assertThrows(InsufficientStockException.class, () -> productUseCase.updateProductStock(updateProductStockRequest));
 	}
 
 	@Test

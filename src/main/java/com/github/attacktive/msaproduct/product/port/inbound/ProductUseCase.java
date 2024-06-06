@@ -5,6 +5,7 @@ import java.util.Set;
 
 import com.github.attacktive.msaproduct.product.adapter.inbound.AddProductRequest;
 import com.github.attacktive.msaproduct.product.adapter.inbound.UpdateProductRequest;
+import com.github.attacktive.msaproduct.product.adapter.inbound.UpdateProductStockRequest;
 import com.github.attacktive.msaproduct.product.domain.Product;
 import org.springframework.lang.Nullable;
 
@@ -16,6 +17,8 @@ public interface ProductUseCase {
 	Product addProduct(AddProductRequest addProductRequest);
 
 	Product updateProduct(long id, UpdateProductRequest updateProductRequest);
+
+	Product updateProductStock(UpdateProductStockRequest updateProductStockRequest);
 
 	void deleteProduct(long id);
 }

@@ -13,4 +13,5 @@ Another microservice about 'Orders' can be found [here](https://github.com/Attac
 - gets a list of products with pagination
 - adds a product
 - updates a product
+- updates the stock of a product
 - deletes a product
