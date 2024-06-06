@@ -1,4 +1,4 @@
-package com.github.attacktive.msaproduct.product.service;
+package com.github.attacktive.msaproduct.product.port.inbound;
 
 import java.util.Set;
 
