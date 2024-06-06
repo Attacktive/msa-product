@@ -12,6 +12,7 @@ import com.github.attacktive.msaproduct.product.port.outbound.ProductPort;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -37,7 +38,7 @@ public class ProductAdapter implements ProductPort {
 		int nonNullPage = Optional.ofNullable(page).orElse(DEFAULT_PAGE);
 		int nonNullSize = Optional.ofNullable(size).orElse(DEFAULT_PAGE_SIZE);
 
-		var pageRequest = PageRequest.of(nonNullPage - 1, nonNullSize);
+		var pageRequest = PageRequest.of(nonNullPage - 1, nonNullSize, Sort.by("id"));
 
 		Page<ProductEntity> pageOfProducts;
 		if (productIds == null || productIds.isEmpty()) {
