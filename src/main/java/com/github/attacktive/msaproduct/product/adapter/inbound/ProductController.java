@@ -2,6 +2,7 @@ package com.github.attacktive.msaproduct.product.adapter.inbound;
 
 import java.util.List;
 import java.util.Set;
+
 import javax.validation.Valid;
 
 import com.github.attacktive.msaproduct.product.domain.Product;
@@ -48,21 +49,18 @@ public class ProductController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	// fixme: the @Valid annotation is not working
 	public Product addProduct(@RequestBody @Valid AddProductRequest addProductRequest) {
 		return productUseCase.addProduct(addProductRequest);
 	}
 
 	@PutMapping("{id}")
 	@ResponseStatus(HttpStatus.OK)
-	// fixme: the @Valid annotation is not working
 	public Product updateProduct(@PathVariable long id, @RequestBody @Valid UpdateProductRequest updateProductRequest) {
 		return productUseCase.updateProduct(id, updateProductRequest);
 	}
 
 	@PatchMapping("{id}")
 	@ResponseStatus(HttpStatus.OK)
-	// fixme: the @Valid annotation is not working
 	public Product updateProductStock(@PathVariable long id, @RequestBody @Valid UpdateProductStockRequest updateProductStockRequest) {
 		return productUseCase.updateProductStock(updateProductStockRequest);
 	}
