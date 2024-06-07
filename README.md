@@ -6,6 +6,7 @@
 It's a minimal example of a [microservice](https://en.wikipedia.org/wiki/Microservices) which manipulates the 'Products'.
 
 Another microservice about 'Orders' can be found [here](https://github.com/Attacktive/msa-order).
+The frontend to test the microservice can be found [here](https://github.com/Attacktive/msa-demo).
 
 ## What It Does
 
