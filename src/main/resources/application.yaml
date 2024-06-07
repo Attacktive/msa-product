@@ -13,6 +13,7 @@ spring:
     username: 'test'
     password: 'test'
   jpa:
+    open-in-view: false
     generate-ddl: true
     show-sql: true
     hibernate:
@@ -23,3 +24,4 @@ spring:
 app:
   allowed-origins:
     - 'http://localhost:5173'
+  base-url-to-orders: 'http://localhost:8081/orders'
