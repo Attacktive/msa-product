@@ -3,6 +3,7 @@ package com.github.attacktive.msaproduct.product.adapter.inbound;
 import java.util.List;
 import java.util.Set;
 
+import com.github.attacktive.msaproduct.product.adapter.NegativeStockException;
 import com.github.attacktive.msaproduct.product.adapter.NoSuchProductException;
 import com.github.attacktive.msaproduct.product.adapter.ProductInUseException;
 import com.github.attacktive.msaproduct.product.domain.Product;
@@ -54,6 +55,11 @@ public class ProductService implements ProductUseCase {
 			.map(found -> found.withStockChange(updateProductStockRequest.stockChange()))
 			.map(UpdateProductRequest::new)
 			.orElseThrow(() -> new NoSuchProductException(updateProductStockRequest.id()));
+
+		var targetStock = updateProductRequest.stock();
+		if (targetStock < 0) {
+			throw new NegativeStockException();
+		}
 
 		return productPort.save(updateProductRequest);
 	}

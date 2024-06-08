@@ -2,8 +2,8 @@ package com.github.attacktive.msaproduct.common;
 
 import javax.xml.bind.ValidationException;
 
+import com.github.attacktive.msaproduct.product.adapter.GenericBadRequestException;
 import com.github.attacktive.msaproduct.product.adapter.NoSuchProductException;
-import com.github.attacktive.msaproduct.product.adapter.ProductInUseException;
 import com.github.attacktive.msaproduct.product.adapter.outbound.ErrorResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -41,12 +41,12 @@ public class ControllerAdvice {
 		return new ErrorResponse(HttpStatus.NOT_FOUND, noSuchProductException.getMessage());
 	}
 
-	@ExceptionHandler(ProductInUseException.class)
+	@ExceptionHandler(GenericBadRequestException.class)
 	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	public ErrorResponse handleProductInUseException(ProductInUseException productInUseException) {
-		log.error(productInUseException.getMessage(), productInUseException);
+	public ErrorResponse handleGenericBadRequestException(GenericBadRequestException genericBadRequestException) {
+		log.error(genericBadRequestException.getMessage(), genericBadRequestException);
 
-		return new ErrorResponse(HttpStatus.NOT_FOUND, productInUseException.getMessage());
+		return new ErrorResponse(HttpStatus.NOT_FOUND, genericBadRequestException.getMessage());
 	}
 
 	@ExceptionHandler(Throwable.class)
