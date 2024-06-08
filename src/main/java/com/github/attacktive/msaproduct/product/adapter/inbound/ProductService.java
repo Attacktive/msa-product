@@ -2,6 +2,8 @@ package com.github.attacktive.msaproduct.product.adapter.inbound;
 
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import com.github.attacktive.msaproduct.product.adapter.NegativeStockException;
 import com.github.attacktive.msaproduct.product.adapter.NoSuchProductException;
@@ -21,6 +23,8 @@ import reactor.core.publisher.Mono;
 @RequiredArgsConstructor
 @Slf4j
 public class ProductService implements ProductUseCase {
+	private static final Lock lock = new ReentrantLock();
+
 	private final ProductPort productPort;
 	private final WebClient webClient;
 
@@ -51,17 +55,23 @@ public class ProductService implements ProductUseCase {
 
 	@Override
 	public Product updateProductStock(UpdateProductStockRequest updateProductStockRequest) {
-		var updateProductRequest = productPort.findById(updateProductStockRequest.id())
-			.map(found -> found.withStockChange(updateProductStockRequest.stockChange()))
-			.map(UpdateProductRequest::new)
-			.orElseThrow(() -> new NoSuchProductException(updateProductStockRequest.id()));
+		lock.lock();
 
-		var targetStock = updateProductRequest.stock();
-		if (targetStock < 0) {
-			throw new NegativeStockException();
+		try {
+			var updateProductRequest = productPort.findById(updateProductStockRequest.id())
+				.map(found -> found.withStockChange(updateProductStockRequest.stockChange()))
+				.map(UpdateProductRequest::new)
+				.orElseThrow(() -> new NoSuchProductException(updateProductStockRequest.id()));
+
+			var targetStock = updateProductRequest.stock();
+			if (targetStock < 0) {
+				throw new NegativeStockException();
+			}
+
+			return productPort.save(updateProductRequest);
+		} finally {
+			lock.unlock();
 		}
-
-		return productPort.save(updateProductRequest);
 	}
 
 	@Override
