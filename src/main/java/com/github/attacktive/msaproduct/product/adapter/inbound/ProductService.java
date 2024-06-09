@@ -85,15 +85,18 @@ public class ProductService implements ProductUseCase {
 		productPort.deleteById(productId);
 	}
 
-	private void ensureProductIsNotInUse(long id) throws ProductInUseException {
+	/**
+	 * @throws ProductInUseException when the specified product is in use
+	 */
+	private void ensureProductIsNotInUse(long productId) throws ProductInUseException {
 		webClient.head()
 			.uri(uriBuilder -> uriBuilder
 				.path("/products/")
-				.path(String.valueOf(id))
+				.path(String.valueOf(productId))
 				.build()
 			)
 			.retrieve()
-			.onStatus(HttpStatus.OK::equals, clientResponse -> Mono.just(new ProductInUseException(id)))
+			.onStatus(HttpStatus.OK::equals, clientResponse -> Mono.just(new ProductInUseException(productId)))
 			.onStatus(HttpStatus.NOT_FOUND::equals, clientResponse -> Mono.empty())
 			.toBodilessEntity()
 			.log()
