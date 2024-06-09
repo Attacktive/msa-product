@@ -5,9 +5,6 @@
 
 It's a minimal example of a [microservice](https://en.wikipedia.org/wiki/Microservices) which manipulates the 'Products'.
 
-Another microservice about 'Orders' can be found [here](https://github.com/Attacktive/msa-order).
-The frontend to test the microservice can be found [here](https://github.com/Attacktive/msa-demo).
-
 ## What It Does
 
 - gets a product by the ID
@@ -16,3 +13,8 @@ The frontend to test the microservice can be found [here](https://github.com/Att
 - updates a product
 - updates the stock of a product
 - deletes a product
+
+## Related Repositories
+
+- Another microservice about 'Orders': [msa-order](https://github.com/Attacktive/msa-order)
+- The frontend to test the microservices: [msa-demo](https://github.com/Attacktive/msa-demo)
